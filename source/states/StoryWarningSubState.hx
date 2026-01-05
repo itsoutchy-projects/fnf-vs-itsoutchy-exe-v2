@@ -66,16 +66,28 @@ class StoryWarningSubstate extends MusicBeatSubstate
 				if (warningidx != 0) {
 					leftState = true;
 				} else {
-					warnText.text =
+					remove(warnText);
+					warnText = new FlxText(0, 0, FlxG.width,
 					'This mod may also feature sensitive topics such as:\n
 					Suicide\n
 					Loneliness\n
 					Isolation\n
 					Self-harm\n
 					Breakdowns\n
-					If you or anyone you know are affected by these issues, please talk to a trusted family member.\n
+					If you or anyone you know are affected by these issues, please talk to a trusted adult.\n
 					Remember: you are not alone.\n
-					Press ESCAPE to continue anyway. You have been warned.';
+					Press ESCAPE to continue anyway. You have been warned.');
+					warnText.setFormat(Paths.font(mainFont), 24, FlxColor.WHITE, CENTER);
+					//warnText.resetSize();
+					//warnText.autoSize = true;
+					//warnText.fieldWidth = FlxG.width;
+					//warnText.fieldHeight = FlxG.height;
+					warnText.scrollFactor.set();
+					warnText.screenCenter(XY);
+					warnText.alpha = 0.0;
+					add(warnText);
+					FlxG.sound.play(Paths.sound('cancelMenu'));
+					FlxTween.tween(warnText, { alpha: 1.0 }, 0.6, { ease: FlxEase.sineIn });
 					//warnText.draw();
 					warningidx = 1;
 				}
