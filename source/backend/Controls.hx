@@ -74,10 +74,14 @@ class Controls
 
 	// Pressed buttons (others)
 	public var ACCEPT(get, never):Bool;
+	public var WARNING_ACCEPT(get, never):Bool;
+	public var WARNING_SPACE(get, never):Bool;
 	public var BACK(get, never):Bool;
 	public var PAUSE(get, never):Bool;
 	public var RESET(get, never):Bool;
 	private function get_ACCEPT() return justPressed('accept');
+	private function get_WARNING_ACCEPT() return justPressed('warning_accept');
+	private function get_WARNING_SPACE() return justPressed('warning_space');
 	private function get_BACK() return justPressed('back');
 	private function get_PAUSE() return justPressed('pause');
 	private function get_RESET() return justPressed('reset');

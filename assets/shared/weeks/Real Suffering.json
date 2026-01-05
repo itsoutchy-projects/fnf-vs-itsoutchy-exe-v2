@@ -1,0 +1,36 @@
+{
+	"storyName": "Loneliness",
+	"difficulties": "Hard",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"hideStoryMode": false,
+	"songs": [
+		[
+			"isolation",
+			"itsoutchy-insane-3d",
+			[
+				16,
+				16,
+				16
+			]
+		],
+		[
+			"delusional",
+			"itsoutchy-insane-3d",
+			[
+				16,
+				16,
+				16
+			]
+		]
+	],
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"hiddenUntilUnlocked": false,
+	"weekName": "Real Suffering"
+}

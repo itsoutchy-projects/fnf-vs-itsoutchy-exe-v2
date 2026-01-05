@@ -64,6 +64,9 @@ class TitleState extends MusicBeatState
 	var easterEggKeysBuffer:String = '';
 	#end
 
+	var vignette:FlxSprite;
+	var scanlines:FlxSprite;
+
 	override public function create():Void
 	{
 		Paths.clearStoredMemory();
@@ -209,6 +212,10 @@ class TitleState extends MusicBeatState
 			initialized = true;
 
 		// credGroup.add(credTextShit);
+		//scanlines = new FlxSprite(0, 0, Paths.image("scanlines"));
+		//add(scanlines);
+		vignette = new FlxSprite(0, 0, Paths.image("vignette"));
+		add(vignette);
 	}
 
 	// JSON data
@@ -548,11 +555,11 @@ class TitleState extends MusicBeatState
 				case 13:
 					deleteCoolText();
 				case 14:
-					addMoreText('Friday');
+					addMoreText('Friday Night Funkin');
 				case 15:
-					addMoreText('Night');
+					addMoreText('itsoutchy');
 				case 16:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+					addMoreText('exe'); // credTextShit.text += '\nFunkin';
 
 				case 17:
 					skipIntro();

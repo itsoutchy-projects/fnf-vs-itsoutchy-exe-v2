@@ -1,5 +1,6 @@
 package states;
 
+import haxe.Log;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -16,6 +17,8 @@ import flixel.util.FlxDestroyUtil;
 import openfl.utils.Assets;
 
 import haxe.Json;
+
+import ModSpecificPrefs.mainFont;
 
 class FreeplayState extends MusicBeatState
 {
@@ -52,6 +55,8 @@ class FreeplayState extends MusicBeatState
 
 	var player:MusicPlayer;
 
+	var vignette:FlxSprite;
+
 	override function create()
 	{
 		//Paths.clearStoredMemory();
@@ -83,6 +88,14 @@ class FreeplayState extends MusicBeatState
 			var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
 			var leSongs:Array<String> = [];
 			var leChars:Array<String> = [];
+			
+			if (leWeek.weekName == null || leWeek.songs == null || leWeek == null) {
+				continue; // wtf why is the week null?
+			}
+
+			trace('Week name: ${leWeek.weekName}');
+			trace(leWeek == null);
+			trace(leWeek.songs == null);
 
 			for (j in 0...leWeek.songs.length)
 			{
@@ -140,7 +153,7 @@ class FreeplayState extends MusicBeatState
 		WeekData.setDirectoryFromWeek();
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
+		scoreText.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, RIGHT);
 
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
@@ -159,7 +172,7 @@ class FreeplayState extends MusicBeatState
 		add(missingTextBG);
 		
 		missingText = new FlxText(50, 0, FlxG.width - 100, '', 24);
-		missingText.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		missingText.setFormat(Paths.font(mainFont), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		missingText.scrollFactor.set();
 		missingText.visible = false;
 		add(missingText);
@@ -179,7 +192,7 @@ class FreeplayState extends MusicBeatState
 		bottomString = leText;
 		var size:Int = 16;
 		bottomText = new FlxText(bottomBG.x, bottomBG.y + 4, FlxG.width, leText, size);
-		bottomText.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, CENTER);
+		bottomText.setFormat(Paths.font(mainFont), size, FlxColor.WHITE, CENTER);
 		bottomText.scrollFactor.set();
 		add(bottomText);
 		
@@ -188,6 +201,10 @@ class FreeplayState extends MusicBeatState
 		
 		changeSelection();
 		updateTexts();
+
+		vignette = new FlxSprite(0, 0, Paths.image("vignette"));
+		add(vignette);
+
 		super.create();
 	}
 

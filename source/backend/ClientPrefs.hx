@@ -97,6 +97,8 @@ class ClientPrefs {
 		'ui_right'		=> [D, RIGHT],
 		
 		'accept'		=> [SPACE, ENTER],
+		'warning_accept'=> [ENTER],
+		'warning_space' => [SPACE],
 		'back'			=> [BACKSPACE, ESCAPE],
 		'pause'			=> [ENTER, ESCAPE],
 		'reset'			=> [R],
@@ -120,6 +122,8 @@ class ClientPrefs {
 		'ui_right'		=> [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
 		
 		'accept'		=> [A, START],
+		'warning_accept'=> [START],
+		'warning_space' => [A],
 		'back'			=> [B],
 		'pause'			=> [START],
 		'reset'			=> [BACK]

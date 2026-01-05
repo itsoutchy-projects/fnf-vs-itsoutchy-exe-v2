@@ -1,0 +1,9 @@
+{
+	"name": "itsoutchy exe",
+	"description": "itsoutchy exe short film and comic, now as an FNF mod!",
+	"restart":false,
+	"runsGlobally": false,
+	"color": [0, 255, 255],
+	"discordRPC": "863222024192262205",
+	"iconFramerate": 10
+}
