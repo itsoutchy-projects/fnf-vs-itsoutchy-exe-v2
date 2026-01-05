@@ -54,14 +54,18 @@ class StoryWarningSubstate extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		if(!leftState) {
-			if (controls.WARNING_ACCEPT) {
-				leftState = true;
-				CoolUtil.browserLoad("https://comic.itsoutchy.xyz/comic");
+			if (warningidx == 0) {
+				// duh
+				if (controls.WARNING_ACCEPT) {
+					leftState = true;
+					CoolUtil.browserLoad("https://comic.itsoutchy.xyz/comic");
+				}
+				if (controls.WARNING_SPACE) {
+					leftState = true;
+					CoolUtil.browserLoad("https://www.youtube.com/watch?v=mSapwq1sV9k");
+				}
 			}
-			if (controls.WARNING_SPACE) {
-				leftState = true;
-				CoolUtil.browserLoad("https://www.youtube.com/watch?v=mSapwq1sV9k");
-			}
+			
 			else if(controls.BACK) {
 				if (warningidx != 0) {
 					leftState = true;
