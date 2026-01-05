@@ -1,1 +1,1 @@
-var mainFont = "monospace.bold.ttf";
+var mainFont = "Times New Roman.ttf";
