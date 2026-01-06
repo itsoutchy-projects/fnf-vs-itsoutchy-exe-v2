@@ -140,6 +140,7 @@ class MainMenuState extends MusicBeatState
 		menuItem.animation.addByPrefix('idle', '$name idle', 24, true);
 		menuItem.animation.addByPrefix('selected', '$name selected', 24, true);
 		menuItem.animation.play('idle');
+		menuItem.setSize(0.4, 0.4);
 		menuItem.updateHitbox();
 		
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
