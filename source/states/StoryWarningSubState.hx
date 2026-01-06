@@ -66,7 +66,7 @@ class StoryWarningSubstate extends MusicBeatSubstate
 				}
 			}
 			
-			else if(controls.BACK) {
+			if(controls.BACK) {
 				if (warningidx != 0) {
 					leftState = true;
 				} else {
