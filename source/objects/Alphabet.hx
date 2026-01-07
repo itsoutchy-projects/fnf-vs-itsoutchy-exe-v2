@@ -338,10 +338,14 @@ class AlphaCharacter extends FlxSprite
 	public var row:Int = 0;
 	public var rowWidth:Float = 0;
 	public var character:String = '?';
-	public function new()
+	public function new(inverted:Bool = true)
 	{
 		super(x, y);
-		image = 'alphabet';
+		var inv = "-white";
+		if (!inverted) {
+			inv = "";
+		}
+		image = 'alphabet$inv';
 		antialiasing = ClientPrefs.data.antialiasing;
 	}
 	
