@@ -35,7 +35,7 @@ class MainMenuState extends MusicBeatState
 	var leftOption:String = #if ACHIEVEMENTS_ALLOWED 'achievements' #else null #end;
 	var rightOption:String = null;
 
-	var magenta:FlxSprite;
+	//var magenta:FlxSprite;
 	var camFollow:FlxObject;
 
 	static var showOutdatedWarning:Bool = false;
@@ -69,24 +69,35 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-		magenta.antialiasing = ClientPrefs.data.antialiasing;
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.color = 0xFFfd719b;
-		add(magenta);
+		// magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
+		// magenta.antialiasing = ClientPrefs.data.antialiasing;
+		// magenta.scrollFactor.set(0, yScroll);
+		// magenta.setGraphicSize(Std.int(magenta.width * 1.175));
+		// magenta.updateHitbox();
+		// magenta.screenCenter();
+		// magenta.visible = false;
+		// magenta.color = 0xFFfd719b;
+		// add(magenta);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
+		var leftX = (FlxG.width / 2) / 2;
+		var rightX = (FlxG.width / 2) * 1.5;
+		var right = false;
+
 		for (num => option in optionShit)
 		{
-			var item:FlxSprite = createMenuItem(option, 0, (num * 140) + 90);
+			var x = leftX;
+			if (right) {
+				x = rightX;
+			}
+			var item:FlxSprite = createMenuItem(option, x, (num * 190) + 90);
+			item.scrollFactor.set(0, 0.5);
+			item.x -= item.width / 2;
 			item.y += (4 - optionShit.length) * 70; // Offsets for when you have anything other than 4 items
-			item.screenCenter(X);
+			right = !right;
+			//item.screenCenter(X);
 		}
 
 		if (leftOption != null)
@@ -140,7 +151,7 @@ class MainMenuState extends MusicBeatState
 		menuItem.animation.addByPrefix('idle', '$name idle', 24, true);
 		menuItem.animation.addByPrefix('selected', '$name selected', 24, true);
 		menuItem.animation.play('idle');
-		menuItem.setSize(0.4, 0.4);
+		menuItem.scale.set(0.5, 0.5);
 		menuItem.updateHitbox();
 		
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
@@ -277,9 +288,6 @@ class MainMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 
-				if (ClientPrefs.data.flashing)
-					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-
 				var item:FlxSprite;
 				var option:String;
 				switch(curColumn)
@@ -297,7 +305,9 @@ class MainMenuState extends MusicBeatState
 						item = rightItem;
 				}
 
-				FlxFlicker.flicker(item, 1, 0.06, false, false, function(flick:FlxFlicker)
+				//if (ClientPrefs.data.flashing)
+					//FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+				camera.flash(FlxColor.WHITE, 0.25, function()
 				{
 					switch (option)
 					{
