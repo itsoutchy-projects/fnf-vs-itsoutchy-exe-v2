@@ -5,6 +5,11 @@
 	"weekBackground": "stage",
 	"weekBefore": "tutorial",
 	"startUnlocked": true,
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
 	"hideStoryMode": false,
 	"songs": [
 		[
@@ -24,13 +29,17 @@
 				16,
 				16
 			]
+		],
+		[
+			"last breath",
+			"face",
+			[
+				146,
+				113,
+				253
+			]
 		]
 	],
-	"weekCharacters": [
-		"dad",
-		"bf",
-		"gf"
-	],
-	"hiddenUntilUnlocked": false,
-	"weekName": "Real Suffering"
+	"weekName": "Real Suffering",
+	"hiddenUntilUnlocked": false
 }
