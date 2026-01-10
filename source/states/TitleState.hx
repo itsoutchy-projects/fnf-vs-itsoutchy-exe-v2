@@ -119,6 +119,7 @@ class TitleState extends MusicBeatState
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
 	var swagShader:ColorSwap = null;
+	//var inIntro = true;
 
 	function startIntro()
 	{
@@ -331,6 +332,7 @@ class TitleState extends MusicBeatState
 	{
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
@@ -453,6 +455,8 @@ class TitleState extends MusicBeatState
 			#end
 		}
 
+		FlxG.camera.zoom = FlxMath.lerp(1.05, FlxG.camera.zoom, Math.exp(-elapsed)); // 3.125
+
 		if (initialized && pressedEnter && !skippedIntro)
 		{
 			skipIntro();
@@ -504,9 +508,21 @@ class TitleState extends MusicBeatState
 
 	private var sickBeats:Int = 0; //Basically curBeat but won't be skipped if you hold the tab or resize the screen
 	public static var closedState:Bool = false;
+
+	var camBumpOtherBeat = true;
+
 	override function beatHit()
 	{
 		super.beatHit();
+
+		if (!skippedIntro)
+			FlxG.camera.zoom = 1.1;
+		else {
+			if (camBumpOtherBeat) {
+				FlxG.camera.zoom = 1.1;
+			}
+			camBumpOtherBeat = !camBumpOtherBeat;
+		}
 
 		if(logoBl != null)
 			logoBl.animation.play('bump', true);
