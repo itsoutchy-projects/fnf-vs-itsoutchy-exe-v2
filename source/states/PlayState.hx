@@ -268,6 +268,9 @@ class PlayState extends MusicBeatState
 
 	private static var _lastLoadedModDirectory:String = '';
 	public static var nextReloadAll:Bool = false;
+
+	var whiteBG:FlxSprite;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -564,6 +567,11 @@ class PlayState extends MusicBeatState
 		uiGroup.add(botplayTxt);
 		if(ClientPrefs.data.downScroll)
 			botplayTxt.y = healthBar.y + 70;
+
+		trace(songName);
+
+		whiteBG = new FlxSprite(-FlxG.width, 0).makeGraphic(FlxG.width * 5, FlxG.height * 5);
+		whiteBG.camera = camGame;
 
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
@@ -1693,6 +1701,20 @@ class PlayState extends MusicBeatState
 
 		setOnScripts('curDecStep', curDecStep);
 		setOnScripts('curDecBeat', curDecBeat);
+
+		if (songName == "last-breath") {
+			if (curStep == 704) {
+				insert(members.indexOf(LuaUtils.getLowestCharacterGroup()), whiteBG);
+				dad.color = FlxColor.BLACK;
+				boyfriend.color = FlxColor.BLACK;
+			}
+			if (curStep == 1088) {
+				boyfriend.alpha = 0.5;
+			}
+			if (curStep == 1344) {
+				boyfriend.alpha = 1;
+			}
+		}
 
 		if(botplayTxt != null && botplayTxt.visible) {
 			botplaySine += 180 * elapsed;
