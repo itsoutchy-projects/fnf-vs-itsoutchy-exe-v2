@@ -5,6 +5,9 @@ art/buildScripts/build_x32-officialrelease.bat
 art/buildScripts/build_x64-officialrelease.bat
 art/buildScripts/test_x64-debug-officialrelease.bat
 
+### Dumped c++ files
+dump/*
+
 ### VS Code
 export/*
 .vscode/*
