@@ -174,6 +174,8 @@ class PlayState extends MusicBeatState
 	public var camZoomingDecay:Float = 1;
 	private var curSong:String = "";
 
+	public var songNameTxt:FlxText;
+
 	public var gfSpeed:Int = 1;
 	public var health(default, set):Float = 1;
 	public var combo:Int = 0;
@@ -270,6 +272,16 @@ class PlayState extends MusicBeatState
 	public static var nextReloadAll:Bool = false;
 
 	var whiteBG:FlxSprite;
+
+	function titleCase(str:String) {
+		var words = str.contains(" ") ? str.split(" ") : [str];
+		var result = "";
+		for (word in words) {
+			var firstLetter = word.charAt(0);
+			result += firstLetter + word.substring(1) + " ";
+		}
+		return result.trim();
+	}
 
 	override public function create()
 	{
@@ -569,6 +581,13 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = healthBar.y + 70;
 
 		trace(songName);
+
+		songNameTxt = new FlxText(FlxG.height - healthBar.y, healthBar.y + (ClientPrefs.data.downScroll ? -25 : 25), FlxG.width - 800, SONG.song.toUpperCase());
+		songNameTxt.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songNameTxt.underline = true;
+		songNameTxt.scrollFactor.set();
+		songNameTxt.borderSize = 1.25;
+		uiGroup.add(songNameTxt);
 
 		whiteBG = new FlxSprite(-FlxG.width, 0).makeGraphic(FlxG.width * 5, FlxG.height * 5);
 		whiteBG.camera = camGame;
@@ -1165,7 +1184,7 @@ class PlayState extends MusicBeatState
 		var tempScore:String;
 		if(!instakillOnMiss) tempScore = Language.getPhrase('score_text', 'Score: {1} | Misses: {2} | Rating: {3}', [songScore, songMisses, str]);
 		else tempScore = Language.getPhrase('score_text_instakill', 'Score: {1} | Rating: {2}', [songScore, str]);
-		scoreTxt.text = tempScore;
+		scoreTxt.text = tempScore.toUpperCase();
 	}
 
 	public dynamic function fullComboFunction()
