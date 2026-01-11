@@ -4,10 +4,14 @@ class MenuItem extends FlxSprite
 {
 	public var targetY:Float = 0;
 
-	public function new(x:Float, y:Float, weekName:String = '')
+	public function new(x:Float, y:Float, weekName:String = '', ?freeplay:Bool = false)
 	{
 		super(x, y);
-		loadGraphic(Paths.image('storymenu/' + weekName));
+		if (!freeplay) {
+			loadGraphic(Paths.image('storymenu/' + weekName));
+		} else {
+			loadGraphic(Paths.image('freeplay/' + weekName));
+		}
 		antialiasing = ClientPrefs.data.antialiasing;
 		//trace('Test added: ' + WeekData.getWeekNumber(weekNum) + ' (' + weekNum + ')');
 	}
