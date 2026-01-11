@@ -1,5 +1,6 @@
 package states;
 
+import shaders.OutlineShader;
 import tjson.TJSON.FancyStyle;
 import flixel.input.gamepad.mappings.SwitchProMapping;
 import objects.Character;
@@ -93,6 +94,7 @@ class FreeplayState extends MusicBeatState
 		}
 
 		dad = new Character(0, 50);
+		dad.shader = new OutlineShader();
 
 		for (i in 0...WeekData.weeksList.length)
 		{
@@ -600,8 +602,12 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(Difficulty.getDefault())));
 		else
 			curDifficulty = 0;
-		dad.changeCharacter(Song.loadFromJson('${songs[curSelected].songName}-hard', songs[curSelected].songName).player2);
+		var thisSong = Song.loadFromJson('${songs[curSelected].songName}-hard', songs[curSelected].songName);
+		dad.changeCharacter(thisSong.player2);
 		dadPos = new FlxPoint(FlxG.width - (dad.width / 2), 0);
+		if (thisSong.player2 == "black stickfigure") {
+			dadPos.x = FlxG.width - dad.width - 30;
+		}
 		dad.x = dadPos.x;
 		dad.screenCenter(Y);
 		//dad.draw();
