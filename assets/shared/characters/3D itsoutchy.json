@@ -1,65 +1,65 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [344, 234],
+			"loop": false,
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "idle",
-			"indices": []
+			"indices": [],
+			"name": "idle"
 		},
 		{
-			"loop": false,
 			"offsets": [361, 227],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "left",
-			"indices": []
+			"indices": [],
+			"name": "left"
 		},
 		{
-			"loop": false,
 			"offsets": [326, 233],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "right",
-			"indices": []
+			"indices": [],
+			"name": "right"
 		},
 		{
-			"loop": false,
 			"offsets": [332, 219],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "up",
-			"indices": []
+			"indices": [],
+			"name": "up"
 		},
 		{
-			"loop": false,
 			"offsets": [339, 231],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "down",
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "down"
+		},
+		{
+			"loop": false,
+			"offsets": [344, 229],
+			"anim": "voiceline 1",
+			"fps": 24,
+			"name": "voiceline 1",
 			"indices": []
 		},
 		{
-			"offsets": [344, 229],
-			"indices": [],
-			"fps": 24,
-			"anim": "voiceline 1",
 			"loop": false,
-			"name": "voiceline 1"
-		},
-		{
 			"offsets": [345, 230],
-			"indices": [],
-			"fps": 24,
 			"anim": "voiceline 2",
-			"loop": false,
-			"name": "voiceline 2"
+			"fps": 24,
+			"name": "voiceline 2",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
-	"image": "characters/itsoutchy",
+	"image": "characters/itsoutchy dark",
 	"position": [80, 80],
 	"healthicon": "itsoutchy-insane-3d",
 	"flip_x": false,
