@@ -1,15 +1,17 @@
 local areBarsOn = false;
 
 function onEvent(event, value1, value2, strumTime)
-    areBarsOn = not areBarsOn;
-    if (areBarsOn) then
-        luaGraphic("top", 0, 100 * 0.5)
-        doTweenY("scaleTopBar", "top.scale", 100, 1)
-        luaGraphic("bottom", 0, screenHeight - 100 * 0.5)
-        doTweenY("scaleBottomBar", "bottom.scale", 100, 1)
-    else
-        removeLuaSprite("top")
-        removeLuaSprite("bottom")
+    if (event == "Letterboxing") then
+        areBarsOn = not areBarsOn;
+        if (areBarsOn) then
+            luaGraphic("top", 0, 100 * 0.5)
+            doTweenY("scaleTopBar", "top.scale", 100, 1)
+            luaGraphic("bottom", 0, screenHeight - 100 * 0.5)
+            doTweenY("scaleBottomBar", "bottom.scale", 100, 1)
+        else
+            removeLuaSprite("top")
+            removeLuaSprite("bottom")
+        end
     end
 end
 
