@@ -1,5 +1,8 @@
 package states;
 
+import tjson.TJSON.FancyStyle;
+import flixel.input.gamepad.mappings.SwitchProMapping;
+import objects.Character;
 import haxe.Log;
 import backend.WeekData;
 import backend.Highscore;
@@ -20,6 +23,8 @@ import haxe.Json;
 
 import ModSpecificPrefs.mainFont;
 
+import objects.MenuItem;
+
 class FreeplayState extends MusicBeatState
 {
 	var songs:Array<SongMetadata> = [];
@@ -38,10 +43,12 @@ class FreeplayState extends MusicBeatState
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
 
-	private var grpSongs:FlxTypedGroup<Alphabet>;
+	var dadPos = new FlxPoint(0, 0);
+
+	private var grpSongs:FlxTypedGroup<MenuItem>;
 	private var curPlaying:Bool = false;
 
-	private var iconArray:Array<HealthIcon> = [];
+	//private var iconArray:Array<HealthIcon> = [];
 
 	var bg:FlxSprite;
 	var intendedColor:Int;
@@ -57,6 +64,8 @@ class FreeplayState extends MusicBeatState
 
 	var vignette:FlxSprite;
 
+	var dad:Character;
+
 	override function create()
 	{
 		//Paths.clearStoredMemory();
@@ -65,6 +74,8 @@ class FreeplayState extends MusicBeatState
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
+
+		Conductor.bpm = TitleState.musicBPM;
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
@@ -80,6 +91,8 @@ class FreeplayState extends MusicBeatState
 				function() MusicBeatState.switchState(new states.MainMenuState())));
 			return;
 		}
+
+		dad = new Character(0, 50);
 
 		for (i in 0...WeekData.weeksList.length)
 		{
@@ -112,6 +125,7 @@ class FreeplayState extends MusicBeatState
 					colors = [146, 113, 253];
 				}
 				addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
+				dad.changeCharacter(Song.loadFromJson('${song[0]}-hard', song[0]).player2);
 			}
 		}
 		Mods.loadTopMod();
@@ -121,36 +135,42 @@ class FreeplayState extends MusicBeatState
 		add(bg);
 		bg.screenCenter();
 
-		grpSongs = new FlxTypedGroup<Alphabet>();
+		grpSongs = new FlxTypedGroup<MenuItem>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(90, 320, songs[i].songName, true);
-			songText.targetY = i;
+			var songText:MenuItem = new MenuItem(90, 320, songs[i].songName, true);
+			songText.scale.set(0.5, 0.5);
+			songText.updateHitbox();
+			songText.targetY = i * songText.height;
 			grpSongs.add(songText);
 
-			songText.scaleX = Math.min(1, 980 / songText.width);
-			songText.snapToPosition();
+			//preload characters so it doesnt have to load the character once you go to the song, less freezing that way
+
+			//songText.scale.x = Math.min(1, 980 / songText.width);
+			//songText.snapToPosition();
 
 			Mods.currentModDirectory = songs[i].folder;
-			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
-			icon.sprTracker = songText;
+			//var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
+			//icon.sprTracker = songText;
 
 			
 			// too laggy with a lot of songs, so i had to recode the logic for it
-			songText.visible = songText.active = songText.isMenuItem = false;
-			icon.visible = icon.active = false;
+			songText.visible = songText.active = false;
+			//icon.visible = icon.active = false;
 
 			// using a FlxGroup is too much fuss!
-			iconArray.push(icon);
-			add(icon);
+			//iconArray.push(icon);
+			//add(icon);
 
 			// songText.x += 40;
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			// songText.screenCenter(X);
+			songText.screenCenter(X);
 		}
 		WeekData.setDirectoryFromWeek();
+
+		add(dad);
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
 		scoreText.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, RIGHT);
@@ -226,6 +246,12 @@ class FreeplayState extends MusicBeatState
 		return (!leWeek.startUnlocked && leWeek.weekBefore.length > 0 && (!StoryMenuState.weekCompleted.exists(leWeek.weekBefore) || !StoryMenuState.weekCompleted.get(leWeek.weekBefore)));
 	}
 
+	override function beatHit() {
+		super.beatHit();
+
+		dad.playAnim("idle");
+	}
+
 	var instPlaying:Int = -1;
 	public static var vocals:FlxSound = null;
 	public static var opponentVocals:FlxSound = null;
@@ -236,6 +262,9 @@ class FreeplayState extends MusicBeatState
 	{
 		if(WeekData.weeksList.length < 1)
 			return;
+
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
 
 		if (FlxG.sound.music.volume < 0.7)
 			FlxG.sound.music.volume += 0.5 * elapsed;
@@ -546,13 +575,14 @@ class FreeplayState extends MusicBeatState
 
 		for (num => item in grpSongs.members)
 		{
-			var icon:HealthIcon = iconArray[num];
-			item.alpha = 0.6;
-			icon.alpha = 0.6;
-			if (item.targetY == curSelected)
+			//var icon:HealthIcon = iconArray[num];
+			item.alpha = 0.3;
+			//item.y += item.height * change;
+			//icon.alpha = 0.6;
+			if (item.targetY == curSelected * item.height)
 			{
 				item.alpha = 1;
-				icon.alpha = 1;
+				//icon.alpha = 1;
 			}
 		}
 		
@@ -570,6 +600,11 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(Difficulty.getDefault())));
 		else
 			curDifficulty = 0;
+		dad.changeCharacter(Song.loadFromJson('${songs[curSelected].songName}-hard', songs[curSelected].songName).player2);
+		dadPos = new FlxPoint(FlxG.width - (dad.width / 2), 0);
+		dad.x = dadPos.x;
+		dad.screenCenter(Y);
+		//dad.draw();
 
 		changeDiff();
 		_updateSongLastDifficulty();
@@ -595,7 +630,7 @@ class FreeplayState extends MusicBeatState
 		for (i in _lastVisibles)
 		{
 			grpSongs.members[i].visible = grpSongs.members[i].active = false;
-			iconArray[i].visible = iconArray[i].active = false;
+			//iconArray[i].visible = iconArray[i].active = false;
 		}
 		_lastVisibles = [];
 
@@ -603,13 +638,14 @@ class FreeplayState extends MusicBeatState
 		var max:Int = Math.round(Math.max(0, Math.min(songs.length, lerpSelected + _drawDistance)));
 		for (i in min...max)
 		{
-			var item:Alphabet = grpSongs.members[i];
+			var item:MenuItem = grpSongs.members[i];
 			item.visible = item.active = true;
-			item.x = ((item.targetY - lerpSelected) * item.distancePerItem.x) + item.startPosition.x;
-			item.y = ((item.targetY - lerpSelected) * 1.3 * item.distancePerItem.y) + item.startPosition.y;
+			//item.x = (item.targetY - lerpSelected);
+			item.y = (item.targetY - lerpSelected * 150);
+			item.screenCenter(X);
 
-			var icon:HealthIcon = iconArray[i];
-			icon.visible = icon.active = true;
+			//var icon:HealthIcon = iconArray[i];
+			//icon.visible = icon.active = true;
 			_lastVisibles.push(i);
 		}
 	}
