@@ -8,6 +8,10 @@ art/buildScripts/test_x64-debug-officialrelease.bat
 ### Dumped c++ files
 dump/*
 
+### Temporary backup files
+*.kra~
+*.png~
+
 ### VS Code
 export/*
 .vscode/*
