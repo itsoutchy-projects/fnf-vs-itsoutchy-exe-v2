@@ -66,6 +66,7 @@ class FreeplayState extends MusicBeatState
 	var vignette:FlxSprite;
 
 	var dad:Character;
+	var bf:Character;
 
 	override function create()
 	{
@@ -210,6 +211,13 @@ class FreeplayState extends MusicBeatState
 		bottomBG.alpha = 0.6;
 		add(bottomBG);
 
+		bf = new Character(25, 0, "bf", true);
+		bf.y = FlxG.height - bf.height - bottomBG.height;
+		//bf.flipX = false;
+		bf.shader = new OutlineShader();
+		//bf.screenCenter(Y);
+		add(bf);
+
 		var leText:String = Language.getPhrase("freeplay_tip", "Press SPACE to listen to the Song / Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.");
 		bottomString = leText;
 		var size:Int = 16;
@@ -252,6 +260,7 @@ class FreeplayState extends MusicBeatState
 		super.beatHit();
 
 		dad.playAnim("idle");
+		bf.playAnim("idle");
 	}
 
 	var instPlaying:Int = -1;
@@ -445,10 +454,16 @@ class FreeplayState extends MusicBeatState
 				player.curTime = 0;
 				player.switchPlayMusic();
 				player.pauseOrResume(true);
+				Conductor.bpm = PlayState.SONG.bpm;
 			}
 			else if (instPlaying == curSelected && player.playingMusic)
 			{
 				player.pauseOrResume(!player.playing);
+				if (!player.playing) {
+					Conductor.bpm = TitleState.musicBPM;
+				} else {
+					Conductor.bpm = PlayState.SONG.bpm;
+				}
 			}
 		}
 		else if (controls.ACCEPT && !player.playingMusic)
