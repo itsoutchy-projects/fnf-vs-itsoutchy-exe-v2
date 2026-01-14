@@ -8,19 +8,28 @@
 				253,
 				13
 			]
+		],
+		[
+			"isolation-old",
+			"face",
+			[
+				100,
+				100,
+				100
+			]
 		]
 	],
 	"hiddenUntilUnlocked": false,
 	"hideFreeplay": false,
 	"weekBackground": "stage",
-	"difficulties": "",
+	"difficulties": "Hard",
 	"weekCharacters": [
 		"bf",
 		"bf",
 		"gf"
 	],
-	"storyName": "Your New Week",
-	"weekName": "Custom Week",
+	"storyName": "Extra songs that didn't find a place in the story",
+	"weekName": "Freeplay Songs",
 	"hideStoryMode": true,
 	"weekBefore": "tutorial",
 	"startUnlocked": true
