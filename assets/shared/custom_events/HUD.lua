@@ -9,6 +9,7 @@ local tweenedHud = {
     'iconP2',
     'timeTxt',
     'scoreTxt',
+    'songNameTxt'
 }
 
 local hudHidden = false;

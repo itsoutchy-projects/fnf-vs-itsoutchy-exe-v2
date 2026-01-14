@@ -582,7 +582,7 @@ class PlayState extends MusicBeatState
 
 		trace(songName);
 
-		songNameTxt = new FlxText(FlxG.height - healthBar.y, healthBar.y + (ClientPrefs.data.downScroll ? -25 : 25), FlxG.width - 800, SONG.song.toUpperCase());
+		songNameTxt = new FlxText(FlxG.height - healthBar.y, healthBar.y + (ClientPrefs.data.downScroll ? -25 : 25), FlxG.width - 800, SONG.song.toUpperCase().replace("-", " "));
 		songNameTxt.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songNameTxt.underline = true;
 		songNameTxt.scrollFactor.set();
