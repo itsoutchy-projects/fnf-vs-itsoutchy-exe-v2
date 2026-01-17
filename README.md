@@ -1,6 +1,14 @@
-![PsychionalEngineLogo](docs/img/PsychEngineLogoTweak.png)
+![itsoutchyExeLogoFridayNightFunkin](docs/img/itsoutchyExeFNFLogo.png)
 
-Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
+> [!CAUTION]  
+> This mod contains themes of s*****e and depression, so play at your own risk.
+
+Friday Night Funkin' mod based on the super happy robot guy who does NOT hate his life :D
+
+Note: This mod is heavilly inspired by Wednesday's Infidelity by Box Funkin'.
+
+## Story
+If I were to type it here it would totally kill the writing so go check it out in the form of either a [webcomic](https://comic.itsoutchy.xyz/) or an [animation](https://www.youtube.com/watch?v=mSapwq1sV9k).
 
 ## Installation:
 
