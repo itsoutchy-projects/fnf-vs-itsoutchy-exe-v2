@@ -131,6 +131,7 @@ class StoryMenuState extends MusicBeatState
 				weekThing.screenCenter(Y);
 				weekThing.y += ((weekThing.height + 20) * num);
 				weekThing.ID = num;
+				itemTargetY = weekThing.y;
 				weekThing.targetY = itemTargetY;
 				itemTargetY += Math.max(weekThing.height, 110) + 10;
 				grpWeekText.add(weekThing);
@@ -462,7 +463,7 @@ class StoryMenuState extends MusicBeatState
 		var unlocked:Bool = !weekIsLocked(leWeek.fileName);
 		for (num => item in grpWeekText.members)
 		{
-			item.alpha = 0.6;
+			item.alpha = 0.3;
 			if (num - curWeek == 0 && unlocked)
 				item.alpha = 1;
 		}
