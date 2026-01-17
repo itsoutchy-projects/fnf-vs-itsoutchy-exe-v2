@@ -3,14 +3,8 @@
 	"difficulties": "Hard",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
-	"weekBefore": "tutorial",
-	"startUnlocked": true,
-	"weekCharacters": [
-		"dad",
-		"bf",
-		"gf"
-	],
-	"hideStoryMode": false,
+	"weekBefore": "Real Suffering",
+	"startUnlocked": false,
 	"songs": [
 		[
 			"tension",
@@ -22,6 +16,12 @@
 			]
 		]
 	],
-	"weekName": "Cold Heart",
-	"hiddenUntilUnlocked": false
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"hideStoryMode": false,
+	"hiddenUntilUnlocked": false,
+	"weekName": "Cold Heart"
 }
