@@ -1,0 +1,27 @@
+{
+	"storyName": "With a heart so cold, nothing can warm it up",
+	"difficulties": "Hard",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"hideStoryMode": false,
+	"songs": [
+		[
+			"tension",
+			"black-stickfigure",
+			[
+				16,
+				16,
+				16
+			]
+		]
+	],
+	"weekName": "Cold Heart",
+	"hiddenUntilUnlocked": false
+}

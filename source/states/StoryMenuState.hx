@@ -48,7 +48,8 @@ class StoryMenuState extends MusicBeatState
 	var loadedWeeks:Array<WeekData> = [];
 
 	var weeksStories = [
-		"After the death of his only friend, he's started to lose his mind, and you'll quickly see that for yourself."
+		"After the death of his only friend, he's started to lose his mind, and you'll quickly see that for yourself.",
+		"After almost being deleted, he's grown a cold heart, and is determined to defeat the one who tried to kill him."
 	];
 
 	var weekStoryText:FlxText;
