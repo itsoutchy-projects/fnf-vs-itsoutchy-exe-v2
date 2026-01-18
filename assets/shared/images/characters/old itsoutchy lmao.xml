@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="old itsoutchy lmao.png">
+	<!-- Created using the Spritesheet and XML generator -->
+	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
+	<SubTexture name="idle0000" x="0" y="908" width="126" height="472" frameX="-124" frameY="-125" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="idle0001" x="126" y="908" width="127" height="468" frameX="-123" frameY="-129" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="idle0002" x="253" y="908" width="128" height="460" frameX="-126" frameY="-137" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="idle0003" x="1203" y="0" width="132" height="459" frameX="-123" frameY="-138" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="idle0004" x="1071" y="0" width="132" height="460" frameX="-123" frameY="-137" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="idle0005" x="1462" y="0" width="126" height="466" frameX="-122" frameY="-131" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="idle0006" x="1335" y="0" width="127" height="470" frameX="-124" frameY="-127" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="down0000" x="440" y="0" width="191" height="461" frameX="-107" frameY="-134" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="down0001" x="223" y="0" width="217" height="451" frameX="-90" frameY="-143" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="left0000" x="0" y="452" width="220" height="456" frameX="-107" frameY="-141" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="left0001" x="0" y="0" width="223" height="452" frameX="-98" frameY="-145" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="right0000" x="936" y="0" width="135" height="456" frameX="-144" frameY="-141" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="right0001" x="223" y="451" width="150" height="450" frameX="-143" frameY="-147" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="up0000" x="790" y="0" width="146" height="472" frameX="-125" frameY="-125" frameWidth="405" frameHeight="720"/>
+	<SubTexture name="up0001" x="631" y="0" width="159" height="466" frameX="-123" frameY="-131" frameWidth="405" frameHeight="720"/>
+</TextureAtlas>
