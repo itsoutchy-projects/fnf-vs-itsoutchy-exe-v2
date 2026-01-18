@@ -142,11 +142,13 @@ class StoryMenuState extends MusicBeatState
 				// Needs an offset thingie
 				if (isLocked)
 				{
-					var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);
+					//weekThing.alpha -= 0.3;
+					var lock:FlxSprite = new FlxSprite(weekThing.x + weekThing.width / 2, 0, Paths.image("lock"));
 					lock.antialiasing = ClientPrefs.data.antialiasing;
-					lock.frames = ui_tex;
-					lock.animation.addByPrefix('lock', 'lock');
-					lock.animation.play('lock');
+					//lock.frames = ui_tex;
+					//lock.animation.addByPrefix('lock', 'lock');
+					//lock.animation.play('lock');
+					lock.x -= lock.width / 2;
 					lock.ID = i;
 					grpLocks.add(lock);
 				}
@@ -290,11 +292,7 @@ class StoryMenuState extends MusicBeatState
 			else
 				leftArrow.animation.play('idle');
 
-			if (controls.UI_RIGHT_P)
-				changeDifficulty(1);
-			else if (controls.UI_LEFT_P)
-				changeDifficulty(-1);
-			else if (changeDiff)
+			if (!controls.UI_RIGHT_P && !controls.UI_LEFT_P && changeDiff)
 				changeDifficulty();
 
 			if(FlxG.keys.justPressed.CONTROL)
@@ -403,17 +401,18 @@ class StoryMenuState extends MusicBeatState
 			DiscordClient.loadModRPC();
 			#end
 		}
-		else FlxG.sound.play(Paths.sound('cancelMenu'));
+		else FlxG.sound.play(Paths.sound('denied'));
 	}
 
 	function changeDifficulty(change:Int = 0):Void
 	{
-		curDifficulty += change;
+		// curDifficulty += change;
 
-		if (curDifficulty < 0)
-			curDifficulty = Difficulty.list.length-1;
-		if (curDifficulty >= Difficulty.list.length)
-			curDifficulty = 0;
+		// if (curDifficulty < 0)
+		// 	curDifficulty = Difficulty.list.length-1;
+		// if (curDifficulty >= Difficulty.list.length)
+		// 	curDifficulty = 0;
+		// ^ funni, but also true if you know what i mean
 
 		WeekData.setDirectoryFromWeek(loadedWeeks[curWeek]);
 
