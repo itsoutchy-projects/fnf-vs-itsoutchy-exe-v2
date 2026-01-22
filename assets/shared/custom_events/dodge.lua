@@ -1,9 +1,25 @@
-local timeToDodge = 1.5;
+local timeToDodge = 1;
 
 local canDodge = false;
 local hasDodged = false;
 
 local dodgeTweenTime = 0.1;
+
+local dodgeSongs = {
+    "deleted"
+}
+
+local dodgeKey = "SPACE";
+
+local function has_value (tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end
 
 function onCreatePost()
     makeLuaSprite("warning", "WARNING");
@@ -11,6 +27,16 @@ function onCreatePost()
     setObjectCamera("warning", "hud");
     addLuaSprite("warning", true);
     setProperty("warning.alpha", 0);
+
+    if has_value(dodgeSongs, songName) then
+        makeLuaText("dodgeWarning", "Your dodge key is "..dodgeKey..".");
+        setTextFont("dodgeWarning", "Times New Roman - Bold.ttf");
+        setTextSize("dodgeWarning", 50);
+        setObjectCamera("dodgeWarning", "hud");
+        addLuaText("dodgeWarning");
+        screenCenter("dodgeWarning", "xy");
+        runTimer("dodgeWarningShowing", 10);
+    end
 end
 
 function onEvent(event, value1, value2, strumTime)
@@ -45,5 +71,8 @@ function onTimerCompleted(tag, loops, loopsLeft)
         end
         hasDodged = false;
         doTweenAlpha("hideDodge", "warning", 0, dodgeTweenTime);
+    end
+    if tag == "dodgeWarningShowing" then
+        doTweenAlpha("dodgeWarningHiding", "dodgeWarning", 0, 0.5);
     end
 end
