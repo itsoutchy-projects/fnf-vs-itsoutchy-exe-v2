@@ -97,11 +97,37 @@ class FreeplayState extends MusicBeatState
 		dad = new Character(0, 50);
 		dad.shader = new OutlineShader();
 
+		var completedStory = StoryMenuState.weekCompleted.get("Real Suffering") && StoryMenuState.weekCompleted.get("Cold Heart");
+		trace('story? ${completedStory}');
+		Highscore.getWeekScore("freeplay", 0);
+		var freeplayWeek:WeekData = WeekData.weeksLoaded.get("freeplay");
+		var completedFreeplay = true;
+		for (song in freeplayWeek.songs) {
+			var currscore = Highscore.getScore(song[0], 0);
+			trace('Current song name: ${song[0]}');
+			trace('Current song score: ${currscore}');
+			if (currscore == 0) {
+				completedFreeplay = false;
+				break;
+			}
+		}
+		trace('freeplay? ${completedFreeplay}');
+		
+		if (completedStory && completedFreeplay) {
+			var specialWeek:WeekData = WeekData.weeksLoaded.get("special");
+			WeekData.setDirectoryFromWeek(specialWeek);
+			//trace(specialWeek.songs[0]);
+			//trace(specialWeek.songs[0][0]);
+			//trace(specialWeek.songs[0][1]);
+			addSong(specialWeek.songs[0][0], 3, specialWeek.songs[0][1], FlxColor.fromRGB(0, 0, 0));
+		}
+
 		for (i in 0...WeekData.weeksList.length)
 		{
 			if(weekIsLocked(WeekData.weeksList[i])) continue;
 
 			var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
+			if(leWeek.hideFreeplay && leWeek.hideStoryMode) continue;
 			var leSongs:Array<String> = [];
 			var leChars:Array<String> = [];
 			
@@ -218,6 +244,8 @@ class FreeplayState extends MusicBeatState
 		//bf.screenCenter(Y);
 		add(bf);
 
+		trace('X: ${dad.x}, Y: ${dad.y}');
+
 		var leText:String = Language.getPhrase("freeplay_tip", "Press SPACE to listen to the Song / Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.");
 		bottomString = leText;
 		var size:Int = 16;
@@ -233,7 +261,7 @@ class FreeplayState extends MusicBeatState
 		updateTexts();
 
 		vignette = new FlxSprite(0, 0, Paths.image("vignette"));
-		add(vignette);
+		//add(vignette);
 
 		super.create();
 	}
@@ -620,11 +648,15 @@ class FreeplayState extends MusicBeatState
 		var thisSong = Song.loadFromJson('${songs[curSelected].songName}-hard', songs[curSelected].songName);
 		dad.changeCharacter(thisSong.player2);
 		dadPos = new FlxPoint(FlxG.width - (dad.width / 2), 0);
+		dad.screenCenter(Y);
 		if (thisSong.player2 == "black stickfigure") {
 			dadPos.x = FlxG.width - dad.width - 30;
 		}
+		if (thisSong.player2 == "dark") {
+			//dad.y = FlxG.height - 30;
+			//dadPos.x += dad.width / 5;
+		}
 		dad.x = dadPos.x;
-		dad.screenCenter(Y);
 		//dad.draw();
 
 		changeDiff();
