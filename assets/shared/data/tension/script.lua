@@ -1,5 +1,6 @@
 function onCreate()
     triggerEvent("HUD", "1");
+    precacheImage("redVignette");
 end
 
 function onStepHit()
