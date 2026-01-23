@@ -21,6 +21,10 @@ local function has_value (tab, val)
     return false
 end
 
+function onCreate()
+    precacheImage("WARNING");
+end
+
 function onCreatePost()
     makeLuaSprite("warning", "WARNING");
     screenCenter("warning", "XY");
