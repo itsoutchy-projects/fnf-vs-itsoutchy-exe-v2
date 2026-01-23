@@ -582,7 +582,7 @@ class PlayState extends MusicBeatState
 
 		trace(songName);
 
-		songNameTxt = new FlxText(FlxG.height - healthBar.y, healthBar.y + (ClientPrefs.data.downScroll ? -25 : 25), FlxG.width - 800, SONG.song.toUpperCase().replace("-", " "));
+		songNameTxt = new FlxText(25, healthBar.y + (ClientPrefs.data.downScroll ? -25 : 25), FlxG.width - 800, SONG.song.toUpperCase().replace("-", " "));
 		songNameTxt.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songNameTxt.underline = true;
 		songNameTxt.scrollFactor.set();
@@ -1091,6 +1091,7 @@ class PlayState extends MusicBeatState
 		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
 		spr.cameras = [camHUD];
 		spr.scrollFactor.set();
+		spr.scale.set(0.5, 0.5);
 		spr.updateHitbox();
 
 		if (PlayState.isPixelStage)
@@ -1722,17 +1723,27 @@ class PlayState extends MusicBeatState
 		setOnScripts('curDecBeat', curDecBeat);
 
 		if (songName == "last-breath") {
-			if (curStep == 704) {
-				insert(members.indexOf(LuaUtils.getLowestCharacterGroup()), whiteBG);
-				dad.color = FlxColor.BLACK;
-				boyfriend.color = FlxColor.BLACK;
+			switch (curStep) {
+				case 704:
+					insert(members.indexOf(LuaUtils.getLowestCharacterGroup()), whiteBG);
+					dad.color = FlxColor.BLACK;
+					boyfriend.color = FlxColor.BLACK;
+				case 1088:
+					boyfriend.alpha = 0.5;
+				case 1344:
+					boyfriend.alpha = 1;
 			}
-			if (curStep == 1088) {
-				boyfriend.alpha = 0.5;
-			}
-			if (curStep == 1344) {
-				boyfriend.alpha = 1;
-			}
+			// if (curStep == 704) {
+			// 	insert(members.indexOf(LuaUtils.getLowestCharacterGroup()), whiteBG);
+			// 	dad.color = FlxColor.BLACK;
+			// 	boyfriend.color = FlxColor.BLACK;
+			// }
+			// if (curStep == 1088) {
+			// 	boyfriend.alpha = 0.5;
+			// }
+			// if (curStep == 1344) {
+			// 	boyfriend.alpha = 1;
+			// }
 		}
 
 		if(botplayTxt != null && botplayTxt.visible) {
