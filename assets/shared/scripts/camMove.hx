@@ -6,6 +6,7 @@ import flixel.FlxState;
 import objects.BGSprite;
 import objects.Character;
 import states.PlayState;
+import backend.Paths;
 
 var lookingX = 0;
 var lookingY = 0;
@@ -33,6 +34,9 @@ var camAngle:Map<String, Int> = [
 
 function onUpdate(){
     if (enabled) {
+        if (Paths.formatToSongPath(PlayState.SONG.song) == "all-it-takes") {
+            dad_multiply = 4;
+        }
         setVar('bf0', boyfriend);
         setVar('dad0', dad);
         if (!PlayState.SONG.notes[curSection].mustHitSection) {
