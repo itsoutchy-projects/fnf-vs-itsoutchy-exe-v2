@@ -1,0 +1,91 @@
+{
+	"objects": [
+		{
+			"x": -1354,
+			"y": -374,
+			"scale": [
+				1.6,
+				1
+			],
+			"image": "vers bg",
+			"flipX": false,
+			"filters": 3,
+			"color": "FFFFFF",
+			"angle": 0,
+			"name": "bg",
+			"antialiasing": true,
+			"flipY": false,
+			"scroll": [
+				1,
+				1
+			],
+			"alpha": 1,
+			"type": "sprite"
+		},
+		{
+			"x": -1364,
+			"y": -982,
+			"scale": [
+				1.3,
+				1.3
+			],
+			"image": "vers ground",
+			"flipX": false,
+			"filters": 3,
+			"color": "FFFFFF",
+			"angle": 0,
+			"name": "ground",
+			"antialiasing": true,
+			"flipY": false,
+			"scroll": [
+				1,
+				1
+			],
+			"alpha": 1,
+			"type": "sprite"
+		},
+		{
+			"type": "gf"
+		},
+		{
+			"type": "dad"
+		},
+		{
+			"type": "boyfriend"
+		}
+	],
+	"camera_opponent": [
+		450,
+		0
+	],
+	"girlfriend": [
+		400,
+		130
+	],
+	"_editorMeta": {
+		"boyfriend": "haze-playable",
+		"gf": "gf",
+		"dad": "haze's mind"
+	},
+	"camera_girlfriend": [
+		0,
+		0
+	],
+	"boyfriend": [
+		975,
+		104
+	],
+	"opponent": [
+		100,
+		100
+	],
+	"hide_girlfriend": true,
+	"directory": "",
+	"camera_speed": 1,
+	"defaultZoom": 0.55,
+	"stageUI": "normal",
+	"camera_boyfriend": [
+		0,
+		200
+	]
+}
