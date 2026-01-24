@@ -122,6 +122,9 @@ class StoryMenuState extends MusicBeatState
 			if (weekFile == null || weekFile.weekName == null || weekFile.songs == null) {
 				continue;
 			}
+			if (weekFile.hideFreeplay && weekFile.hideStoryMode) {
+				continue;
+			}
 			var isLocked:Bool = weekIsLocked(WeekData.weeksList[i]);
 			if(!isLocked || !weekFile.hiddenUntilUnlocked)
 			{
