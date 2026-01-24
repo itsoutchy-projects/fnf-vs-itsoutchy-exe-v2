@@ -649,12 +649,31 @@ class FreeplayState extends MusicBeatState
 		dad.changeCharacter(thisSong.player2);
 		dadPos = new FlxPoint(FlxG.width - (dad.width / 2), 0);
 		dad.screenCenter(Y);
+		if (thisSong.player2 == "3D itsoutchy" || thisSong.player2 == "itsoutchy suicide") {
+			dadPos.x = 846;
+			dad.y = -24;
+		}
 		if (thisSong.player2 == "black stickfigure") {
 			dadPos.x = FlxG.width - dad.width - 30;
 		}
 		if (thisSong.player2 == "dark") {
-			//dad.y = FlxG.height - 30;
-			//dadPos.x += dad.width / 5;
+			dadPos.x = 895;
+			dad.y = 58;
+		}
+		if (thisSong.player2 == "old itsoutchy lmao") {
+			dadPos.x = 907;
+			dad.y = -2.8421709430404e-14;
+		}
+		if (thisSong.player2 == "haze's mind" || thisSong.player2 == "dark HUGEEEEE") {
+			dad.alpha = 0;
+		} else {
+			dad.alpha = 1;
+		}
+		if (thisSong.song == "all it takes") {
+			bf.alpha = 0;
+			dad.alpha = 0;
+		} else {
+			bf.alpha = 1;
 		}
 		dad.x = dadPos.x;
 		//dad.draw();
