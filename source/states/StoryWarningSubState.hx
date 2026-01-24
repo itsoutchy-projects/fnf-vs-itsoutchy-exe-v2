@@ -72,7 +72,7 @@ class StoryWarningSubstate extends MusicBeatSubstate
 				} else {
 					remove(warnText);
 					warnText = new FlxText(0, 0, FlxG.width,
-					'This mod may also feature sensitive topics such as:\n
+					'This mod also contains sensitive topics such as:\n
 					Suicide\n
 					Loneliness\n
 					Isolation\n
