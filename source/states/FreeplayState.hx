@@ -97,23 +97,26 @@ class FreeplayState extends MusicBeatState
 		dad = new Character(0, 50);
 		dad.shader = new OutlineShader();
 
-		var completedStory = StoryMenuState.weekCompleted.get("Real Suffering") && StoryMenuState.weekCompleted.get("Cold Heart");
-		trace('story? ${completedStory}');
-		Highscore.getWeekScore("freeplay", 0);
-		var freeplayWeek:WeekData = WeekData.weeksLoaded.get("freeplay");
-		var completedFreeplay = true;
-		for (song in freeplayWeek.songs) {
-			var currscore = Highscore.getScore(song[0], 0);
-			trace('Current song name: ${song[0]}');
-			trace('Current song score: ${currscore}');
-			if (currscore == 0) {
-				completedFreeplay = false;
-				break;
+		if (FlxG.save.data.unlockedAIT == null) {
+			var completedStory = StoryMenuState.weekCompleted.get("Real Suffering") && StoryMenuState.weekCompleted.get("Cold Heart");
+			trace('story? ${completedStory}');
+			Highscore.getWeekScore("freeplay", 0);
+			var freeplayWeek:WeekData = WeekData.weeksLoaded.get("freeplay");
+			var completedFreeplay = true;
+			for (song in freeplayWeek.songs) {
+				var currscore = Highscore.getScore(song[0], 0);
+				trace('Current song name: ${song[0]}');
+				trace('Current song score: ${currscore}');
+				if (currscore == 0) {
+					completedFreeplay = false;
+					break;
+				}
 			}
+			trace('freeplay? ${completedFreeplay}');
+			FlxG.save.data.unlockedAIT = completedStory && completedFreeplay;
 		}
-		trace('freeplay? ${completedFreeplay}');
 		
-		if (completedStory && completedFreeplay) {
+		if (FlxG.save.data.unlockedAIT) {
 			var specialWeek:WeekData = WeekData.weeksLoaded.get("special");
 			WeekData.setDirectoryFromWeek(specialWeek);
 			//trace(specialWeek.songs[0]);
