@@ -11,6 +11,7 @@ dump/*
 ### Temporary backup files
 *.kra~
 *.png~
+RECOVER_*.fla
 
 ### VS Code
 export/*
