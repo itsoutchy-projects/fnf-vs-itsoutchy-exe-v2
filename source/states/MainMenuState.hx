@@ -168,6 +168,11 @@ class MainMenuState extends MusicBeatState
 		if (FlxG.sound.music.volume < 0.8)
 			FlxG.sound.music.volume = Math.min(FlxG.sound.music.volume + 0.5 * elapsed, 0.8);
 
+		// if (FlxG.keys.justPressed.F5) {
+		// 	FlxG.save.data.unlockedAIT = false;
+		// 	FlxG.save.flush();
+		// }
+
 		if (!selectedSomethin)
 		{
 			if (controls.UI_UP_P)
