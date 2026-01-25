@@ -1,5 +1,7 @@
 package states;
 
+import states.AITUnlockedState;
+import lime.app.Application;
 import backend.Highscore;
 import backend.StageData;
 import backend.WeekData;
@@ -2515,16 +2517,21 @@ class PlayState extends MusicBeatState
 					#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 
 					canResync = false;
-					MusicBeatState.switchState(new StoryMenuState());
 
 					// if ()
+					var aitJustUnlocked = false;
 					if(!ClientPrefs.getGameplaySetting('practice') && !ClientPrefs.getGameplaySetting('botplay')) {
 						StoryMenuState.weekCompleted.set(WeekData.weeksList[storyWeek], true);
 						Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
 
 						FlxG.save.data.weekCompleted = StoryMenuState.weekCompleted;
-						FlxG.save.flush();
+						if (!FlxG.save.data.unlockedAIT)
+							aitJustUnlocked = checkUnlockedAIT();
 					}
+					if (!aitJustUnlocked)
+						MusicBeatState.switchState(new StoryMenuState());
+					else
+						MusicBeatState.switchState(new AITUnlockedState(false));
 					changedDifficulty = false;
 				}
 				else
@@ -2548,35 +2555,53 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				var aitJustUnlocked = false;
+				if (!FlxG.save.data.unlockedAIT)
+					aitJustUnlocked = checkUnlockedAIT();
 				trace('WENT BACK TO FREEPLAY??');
 				Mods.loadTopMod();
 				#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 
 				canResync = false;
-				MusicBeatState.switchState(new FreeplayState());
+				if (!aitJustUnlocked)
+					MusicBeatState.switchState(new FreeplayState());
+				else
+					MusicBeatState.switchState(new AITUnlockedState(true));
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				changedDifficulty = false;
 			}
-			var completedStory = StoryMenuState.weekCompleted.get("Real Suffering") && StoryMenuState.weekCompleted.get("Cold Heart");
-			trace('story? ${completedStory}');
-			Highscore.getWeekScore("freeplay", 0);
-			var freeplayWeek:WeekData = WeekData.weeksLoaded.get("freeplay");
-			var completedFreeplay = true;
-			for (song in freeplayWeek.songs) {
-				var currscore = Highscore.getScore(song[0], 0);
-				trace('Current song name: ${song[0]}');
-				trace('Current song score: ${currscore}');
-				if (currscore == 0) {
-					completedFreeplay = false;
-					break;
-				}
-			}
-			trace('freeplay? ${completedFreeplay}');
-			FlxG.save.data.unlockedAIT = completedStory && completedFreeplay;
-			FlxG.save.flush();
 			transitioning = true;
 		}
 		return true;
+	}
+
+	/**
+		* Checks if the player has unlocked the song "All It Takes", and lets them know if they have.
+	**/
+	function checkUnlockedAIT() {
+		// can't believe it was this difficult to do this, fml
+		var completedStory = StoryMenuState.weekCompleted.get("Real Suffering") && StoryMenuState.weekCompleted.get("Cold Heart");
+		trace('story? ${completedStory}');
+		Highscore.getWeekScore("freeplay", 0);
+		var freeplayWeek:WeekData = WeekData.weeksLoaded.get("freeplay");
+		var completedFreeplay = true;
+		for (song in freeplayWeek.songs) {
+			var currscore = Highscore.getScore(song[0], 0);
+			trace('Current song name: ${song[0]}');
+			trace('Current song score: ${currscore}');
+			if (currscore == 0) {
+				completedFreeplay = false;
+				break;
+			}
+		}
+		trace('freeplay? ${completedFreeplay}');
+		var justUnlockedAIT = false;
+		if (completedFreeplay && completedStory && !FlxG.save.data.unlockedAIT) {
+			justUnlockedAIT = true;
+		}
+		FlxG.save.data.unlockedAIT = completedStory && completedFreeplay;
+		FlxG.save.flush();
+		return justUnlockedAIT;
 	}
 
 	public function KillNotes() {
