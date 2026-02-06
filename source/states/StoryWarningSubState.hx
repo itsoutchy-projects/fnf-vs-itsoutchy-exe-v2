@@ -73,14 +73,13 @@ class StoryWarningSubstate extends MusicBeatSubstate
 					remove(warnText);
 					warnText = new FlxText(0, 0, FlxG.width,
 					'This mod also contains sensitive topics such as:\n
-					Suicide\n
-					Loneliness\n
-					Isolation\n
-					Self-harm\n
-					Breakdowns\n
-					If you or anyone you know are affected by these issues, please talk to a trusted adult.\n
-					Remember: you are not alone.\n
-					Press ESCAPE to continue anyway. You have been warned.');
+Loneliness\n
+Isolation\n
+Self-harm\n
+Breakdowns\n
+If you or anyone you know are affected by these issues, please talk to a trusted adult.\n
+Remember: you are not alone.\n
+Press ESCAPE to continue anyway. You have been warned.');
 					warnText.setFormat(Paths.font(mainFont), 24, FlxColor.WHITE, CENTER);
 					//warnText.resetSize();
 					//warnText.autoSize = true;
