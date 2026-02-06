@@ -10,6 +10,9 @@ Note: This mod is heavilly inspired by Wednesday's Infidelity by Box Funkin'.
 ## Story
 If I were to type it here it would totally kill the writing so go check it out in the form of either a [webcomic](https://comic.itsoutchy.xyz/) or an [animation](https://www.youtube.com/watch?v=mSapwq1sV9k).
 
+![walkingAwayFromKeithFNFModPromo](docs/img/FNF%20VS%20itsoutchy%20exe%20promotional%20artwork/walking%20away%20from%20keith.png)  
+![fallingFNFModPromo](docs/img/FNF%20VS%20itsoutchy%20exe%20promotional%20artwork/falling.png)
+
 ## Installation:
 
 Refer to [the Build Instructions](/docs/BUILDING.md)
