@@ -731,6 +731,7 @@ class FreeplayState extends MusicBeatState
 		}
 		dad.x = dadPos.x;
 		//dad.draw();
+		FlxG.camera.flash(FlxColor.BLACK, 1, null, true);
 
 		changeDiff();
 		_updateSongLastDifficulty();
@@ -767,7 +768,7 @@ class FreeplayState extends MusicBeatState
 			var item:MenuItem = grpSongs.members[i];
 			item.visible = item.active = true;
 			//item.x = (item.targetY - lerpSelected);
-			item.y = (item.targetY - lerpSelected);
+			item.y = item.targetY - (item.height * curSelected);
 			item.screenCenter(X);
 
 			//var icon:HealthIcon = iconArray[i];
