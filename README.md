@@ -37,6 +37,11 @@ There you can learn how to use the 212 PlayState funcions in your mod!
 * Shadow Mario - Main Programmer and Head of Psych Engine.
 * Riveren - Main Artist/Animator of Psych Engine.
 
+### SFX Credits
+#### Pixabay
+* Floraphonic
+* freesound_community
+
 ### Special Thanks
 * bbpanzu - Ex-Team Member (Programmer).
 * crowplexus - HScript Iris, Input System v3, and Other PRs.
