@@ -1,0 +1,4 @@
+Removes/shows all UI elements except for the notes
+
+0 = visible
+1 = invisible
