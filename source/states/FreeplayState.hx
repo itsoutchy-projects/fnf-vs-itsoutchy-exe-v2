@@ -69,6 +69,8 @@ class FreeplayState extends MusicBeatState
 	var dad:Character;
 	var bf:Character;
 
+	var CHARACTERS_SHOWN = false;
+
 	override function create()
 	{
 		//Paths.clearStoredMemory();
@@ -95,8 +97,10 @@ class FreeplayState extends MusicBeatState
 			return;
 		}
 
-		dad = new Character(0, 50);
-		dad.shader = new OutlineShader();
+		if (CHARACTERS_SHOWN) {
+			dad = new Character(0, 50);
+			dad.shader = new OutlineShader();
+		}
 
 		if (FlxG.save.data.unlockedAIT == null) {
 			var completedStory = StoryMenuState.weekCompleted.get("Real Suffering") && StoryMenuState.weekCompleted.get("Cold Heart");
@@ -158,7 +162,8 @@ class FreeplayState extends MusicBeatState
 					colors = [146, 113, 253];
 				}
 				addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
-				dad.changeCharacter(Song.loadFromJson('${song[0]}-hard', song[0]).player2);
+				if (CHARACTERS_SHOWN)
+					dad.changeCharacter(Song.loadFromJson('${song[0]}-hard', song[0]).player2);
 			}
 		}
 		Mods.loadTopMod();
@@ -203,7 +208,8 @@ class FreeplayState extends MusicBeatState
 		}
 		WeekData.setDirectoryFromWeek();
 
-		add(dad);
+		if (CHARACTERS_SHOWN)
+			add(dad);
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
 		scoreText.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, RIGHT);
@@ -241,14 +247,16 @@ class FreeplayState extends MusicBeatState
 		bottomBG.alpha = 0.6;
 		add(bottomBG);
 
-		bf = new Character(25, 0, "bf", true);
-		bf.y = FlxG.height - bf.height - bottomBG.height;
-		//bf.flipX = false;
-		bf.shader = new OutlineShader();
-		//bf.screenCenter(Y);
-		add(bf);
+		if (CHARACTERS_SHOWN) {
+			bf = new Character(25, 0, "bf", true);
+			bf.y = FlxG.height - bf.height - bottomBG.height;
+			//bf.flipX = false;
+			bf.shader = new OutlineShader();
+			//bf.screenCenter(Y);
+			add(bf);
 
-		trace('X: ${dad.x}, Y: ${dad.y}');
+			trace('X: ${dad.x}, Y: ${dad.y}');
+		}
 
 		var leText:String = Language.getPhrase("freeplay_tip", "Press SPACE to listen to the Song / Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.");
 		bottomString = leText;
@@ -291,8 +299,10 @@ class FreeplayState extends MusicBeatState
 	override function beatHit() {
 		super.beatHit();
 
-		dad.playAnim("idle");
-		bf.playAnim("idle");
+		if (CHARACTERS_SHOWN) {
+			dad.playAnim("idle");
+			bf.playAnim("idle");
+		}
 	}
 
 	var instPlaying:Int = -1;
@@ -699,37 +709,39 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(Difficulty.getDefault())));
 		else
 			curDifficulty = 0;
-		var thisSong = Song.loadFromJson('${songs[curSelected].songName}-hard', songs[curSelected].songName);
-		dad.changeCharacter(thisSong.player2);
-		dadPos = new FlxPoint(FlxG.width - (dad.width / 2), 0);
-		dad.screenCenter(Y);
-		if (thisSong.player2 == "3D itsoutchy" || thisSong.player2 == "itsoutchy suicide" || thisSong.player2 == "3D itsoutchy breaking") {
-			dadPos.x = 846;
-			dad.y = -24;
+		if (CHARACTERS_SHOWN) {
+			var thisSong = Song.loadFromJson('${songs[curSelected].songName}-hard', songs[curSelected].songName);
+			dad.changeCharacter(thisSong.player2);
+			dadPos = new FlxPoint(FlxG.width - (dad.width / 2), 0);
+			dad.screenCenter(Y);
+			if (thisSong.player2 == "3D itsoutchy" || thisSong.player2 == "itsoutchy suicide" || thisSong.player2 == "3D itsoutchy breaking") {
+				dadPos.x = 846;
+				dad.y = -24;
+			}
+			if (thisSong.player2 == "black stickfigure") {
+				dadPos.x = FlxG.width - dad.width - 30;
+			}
+			if (thisSong.player2 == "dark") {
+				dadPos.x = 895;
+				dad.y = 58;
+			}
+			if (thisSong.player2 == "old itsoutchy lmao") {
+				dadPos.x = 907;
+				dad.y = -2.8421709430404e-14;
+			}
+			if (thisSong.player2 == "haze's mind" || thisSong.player2 == "dark HUGEEEEE") {
+				dad.alpha = 0;
+			} else {
+				dad.alpha = 1;
+			}
+			if (thisSong.song == "all it takes" || thisSong.song == "last breath") {
+				bf.alpha = 0;
+				dad.alpha = 0;
+			} else {
+				bf.alpha = 1;
+			}
+			dad.x = dadPos.x;
 		}
-		if (thisSong.player2 == "black stickfigure") {
-			dadPos.x = FlxG.width - dad.width - 30;
-		}
-		if (thisSong.player2 == "dark") {
-			dadPos.x = 895;
-			dad.y = 58;
-		}
-		if (thisSong.player2 == "old itsoutchy lmao") {
-			dadPos.x = 907;
-			dad.y = -2.8421709430404e-14;
-		}
-		if (thisSong.player2 == "haze's mind" || thisSong.player2 == "dark HUGEEEEE") {
-			dad.alpha = 0;
-		} else {
-			dad.alpha = 1;
-		}
-		if (thisSong.song == "all it takes" || thisSong.song == "last breath") {
-			bf.alpha = 0;
-			dad.alpha = 0;
-		} else {
-			bf.alpha = 1;
-		}
-		dad.x = dadPos.x;
 		//dad.draw();
 		FlxG.camera.flash(FlxColor.BLACK, 1, null, true);
 
