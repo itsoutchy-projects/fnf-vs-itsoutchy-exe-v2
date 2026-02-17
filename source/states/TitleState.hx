@@ -67,6 +67,10 @@ class TitleState extends MusicBeatState
 	var vignette:FlxSprite;
 	var scanlines:FlxSprite;
 
+	var titleItsoutchy:FlxSprite;
+	var titleKieth:FlxSprite;
+	var showTitlePeeps = false;
+
 	override public function create():Void
 	{
 		Paths.clearStoredMemory();
@@ -78,6 +82,11 @@ class TitleState extends MusicBeatState
 			ClientPrefs.loadPrefs();
 			Language.reloadPhrases();
 		}
+
+		titleItsoutchy = new FlxSprite(0, 0, Paths.image("titleItsoutchy"));
+		titleItsoutchy.visible = false;
+		titleKieth = new FlxSprite(0, 0, Paths.image("titleKieth"));
+		titleKieth.visible = false;
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
@@ -202,7 +211,11 @@ class TitleState extends MusicBeatState
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
 		add(gfDance);
+		if (showTitlePeeps)
+			add(titleKieth);
 		add(logoBl); //FNF Logo
+		if (showTitlePeeps)
+			add(titleItsoutchy);
 		add(titleText); //"Press Enter to Begin" text
 		add(credGroup);
 		add(ngSpr);
@@ -650,6 +663,8 @@ class TitleState extends MusicBeatState
 			{
 				remove(ngSpr);
 				remove(credGroup);
+				titleItsoutchy.visible = true;
+				titleKieth.visible = true;
 				FlxG.camera.flash(FlxColor.WHITE, 4);
 
 				var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
