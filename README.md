@@ -1,7 +1,8 @@
 ![itsoutchyExeLogoFridayNightFunkin](docs/img/itsoutchyExeFNFLogo.png)
 
 > [!CAUTION]  
-> This mod contains themes of s*****e and depression, so play at your own risk.
+> This mod contains themes of s\*\*\*\*\*e and depression, so play at your own risk.  
+> (do note that s\*\*\*\*\*e is only found in one freeplay song, and you get a warning in advance which you can use to exit back into freeplay)
 
 Friday Night Funkin' mod based on the super happy robot guy who does NOT hate his life :D
 
