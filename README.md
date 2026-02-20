@@ -33,8 +33,26 @@ For this you can head over to [the wiki](https://shadowmario.github.io/psychengi
 
 There you can learn how to use the 212 PlayState funcions in your mod!
 
-## Credits:
-* itsoutchy - made the mod
+## Credits
+* itsoutchy - Main Mod Creator
+
+### Inspirations
+* Cape Funkin' - Wednesday's Infidelity was a HUGE inspiration for this mod
+* IMPOSTORM - Inspired the addition of ALl It Takes
+
+### Special Thanks
+* RamenDominoes - Cinematic Bars Script
+* Nebula Zorua - Original source of VCR shader
+* ZSolarDev - Ported VCR shader to Psych
+* Awe - Made the original version of Versiculus Iratus (seen in Wednesday's Infidelity)
+* JS114 - Made the camera movement script
+* Veriton - Made the camera swinging script
+
+### SFX Credits
+* Floraphonic - Source Of Some Sound Effects
+* freesound_community - Source Of Some Sound Effects
+
+## Psych Engine Credits:
 * Shadow Mario - Main Programmer and Head of Psych Engine.
 * Riveren - Main Artist/Animator of Psych Engine.
 
