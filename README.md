@@ -1,6 +1,6 @@
 ![itsoutchyExeLogoFridayNightFunkin](docs/img/itsoutchyExeFNFLogo.png)  
 _Will you be able to help him?_  
-<u>_**Life may feel grim, but there's always a way up.**_</u>
+<ins>_**Life may feel grim, but there's always a way up.**_</ins>
 <hr>
 
 > [!CAUTION]  
