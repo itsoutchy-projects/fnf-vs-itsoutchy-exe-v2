@@ -1,4 +1,7 @@
 ![itsoutchyExeLogoFridayNightFunkin](docs/img/itsoutchyExeFNFLogo.png)
+_Will you be able to help him?_  
+<u>_**Life may feel grim, but there's always a way up.**_</u>
+<hr>
 
 > [!CAUTION]  
 > This mod contains themes of s\*\*\*\*\*e and depression, so play at your own risk.  
@@ -38,7 +41,7 @@ There you can learn how to use the 212 PlayState funcions in your mod!
 
 ### Inspirations
 * Cape Funkin' - Wednesday's Infidelity was a HUGE inspiration for this mod
-* IMPOSTORM - Inspired the addition of ALl It Takes
+* IMPOSTORM - Inspired the addition of All It Takes
 
 ### Special Thanks
 * RamenDominoes - Cinematic Bars Script
