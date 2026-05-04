@@ -3,6 +3,9 @@ package options;
 import states.MainMenuState;
 import backend.StageData;
 
+import lime.app.Application;
+import ModSpecificPrefs.modName;
+
 class OptionsState extends MusicBeatState
 {
 	var options:Array<String> = [
@@ -47,6 +50,8 @@ class OptionsState extends MusicBeatState
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Options Menu", null);
 		#end
+
+		Application.current.window.title = "Friday Night Funkin': " + modName + " - Options";
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;

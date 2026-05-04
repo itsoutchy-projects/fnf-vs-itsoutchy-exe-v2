@@ -1,5 +1,6 @@
 package states;
 
+import ModSpecificPrefs.modName;
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
@@ -54,6 +55,8 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
+		Application.current.window.title = "Friday Night Funkin': " + modName + " - Main Menu";
 
 		persistentUpdate = persistentDraw = true;
 

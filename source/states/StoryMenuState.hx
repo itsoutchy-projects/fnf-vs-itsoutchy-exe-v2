@@ -1,5 +1,6 @@
 package states;
 
+import ModSpecificPrefs.modName;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -16,6 +17,8 @@ import substates.ResetScoreSubState;
 import backend.StageData;
 
 import ModSpecificPrefs.mainFont;
+
+import lime.app.Application;
 
 class StoryMenuState extends MusicBeatState
 {
@@ -69,6 +72,7 @@ class StoryMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+		Application.current.window.title = "Friday Night Funkin': " + modName + " - Story Mode";
 
 		if(WeekData.weeksList.length < 1)
 		{

@@ -1,5 +1,6 @@
 package states;
 
+import ModSpecificPrefs.modName;
 import states.AITUnlockedState;
 import lime.app.Application;
 import backend.Highscore;
@@ -584,6 +585,8 @@ class PlayState extends MusicBeatState
 
 		trace(songName);
 
+		Application.current.window.title = "Friday Night Funkin': " + modName + " - " + SONG.song;
+
 		songNameTxt = new FlxText(25, healthBar.y + (ClientPrefs.data.downScroll ? -25 : 25), FlxG.width - 800, SONG.song.toUpperCase().replace("-", " "));
 		songNameTxt.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songNameTxt.underline = true;
@@ -918,10 +921,12 @@ class PlayState extends MusicBeatState
 
 	function startAndEnd()
 	{
-		if(endingSong)
+		if(endingSong) {
+			Application.current.window.title = "Friday Night Funkin': " + modName;
 			endSong();
-		else
+		} else {
 			startCountdown();
+		}
 	}
 
 	var dialogueCount:Int = 0;

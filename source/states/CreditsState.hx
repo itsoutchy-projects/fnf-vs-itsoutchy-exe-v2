@@ -2,6 +2,9 @@ package states;
 
 import objects.AttachedSprite;
 
+import lime.app.Application;
+import ModSpecificPrefs.modName;
+
 class CreditsState extends MusicBeatState
 {
 	var curSelected:Int = -1;
@@ -23,6 +26,8 @@ class CreditsState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
+		Application.current.window.title = "Friday Night Funkin': " + modName + " - Main Menu";
 
 		persistentUpdate = true;
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));

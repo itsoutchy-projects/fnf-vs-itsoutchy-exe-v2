@@ -1,5 +1,6 @@
 package states;
 
+import ModSpecificPrefs.modName;
 import substates.TriggerWarningSubState;
 import shaders.OutlineShader;
 import tjson.TJSON.FancyStyle;
@@ -22,6 +23,8 @@ import flixel.util.FlxDestroyUtil;
 import openfl.utils.Assets;
 
 import haxe.Json;
+
+import lime.app.Application;
 
 import ModSpecificPrefs.mainFont;
 
@@ -86,6 +89,8 @@ class FreeplayState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
+		Application.current.window.title = "Friday Night Funkin': " + modName + " - Freeplay";
 
 		if(WeekData.weeksList.length < 1)
 		{
