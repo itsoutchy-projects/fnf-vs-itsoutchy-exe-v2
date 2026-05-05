@@ -19,6 +19,14 @@ If I were to type it here it would totally kill the writing so go check it out i
 
 ## Installation:
 
+> [!IMPORTANT]  
+> Inside `Project.xml`, make sure to delete these lines:
+> ```xml
+> <!-- Delete this line! CHANGELOG.md won't be included in your source copy! -->
+> <assets path='CHANGELOG.md' />
+> ```
+> I have gitignored the `CHANGELOG.md` file, it'll only exist in procompiled copies of the mod.
+
 Refer to [the Build Instructions](/docs/BUILDING.md)
 
 ## Customization:
