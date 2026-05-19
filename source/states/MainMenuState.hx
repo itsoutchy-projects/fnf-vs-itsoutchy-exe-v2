@@ -7,6 +7,7 @@ import lime.app.Application;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
 import ModSpecificPrefs.mainFont;
+//import haxe.Http;
 
 enum MainMenuColumn {
 	LEFT;
@@ -24,6 +25,8 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
+
+	//public static var changelogURL = "https://github.com/itsoutchy-projects/FNF-VS-itsoutchy-exe-V2/raw/refs/heads/main/CHANGELOG.md";
 
 	//Centered/Text options
 	var optionShit:Array<String> = [
@@ -57,6 +60,16 @@ class MainMenuState extends MusicBeatState
 		#end
 
 		Application.current.window.title = "Friday Night Funkin': " + modName + " - Main Menu";
+
+		// var changelogHttp = new haxe.Http(changelogURL);
+
+		// changelogHttp.onData = function (data:String) {
+        //   	if (data != Paths.getTextFromFile("CHANGELOG.md")) {
+		// 		trace("outdated! or maybe updated? but that would be weird-");
+		// 	}
+        // }
+
+		// changelogHttp.request(false);
 
 		persistentUpdate = persistentDraw = true;
 
