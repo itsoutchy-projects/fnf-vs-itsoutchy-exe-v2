@@ -1,0 +1,1 @@
+players (aka maybe you) can change the difficulty in freeplay, not storymode, therefore these aren't needed
