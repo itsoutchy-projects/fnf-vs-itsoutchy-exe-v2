@@ -1,0 +1,3 @@
+middle scroll on off in middle of song
+
+value 1 = 0 (off) or 1 (on)

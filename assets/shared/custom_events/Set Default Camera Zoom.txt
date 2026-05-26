@@ -1,0 +1,3 @@
+Multiply the defaultCamZoom variable by value 1 (zooms the camera in a way that the game wont automatically reset it but can still zoom on beat)
+
+value 1: zoom multiplier

@@ -1,0 +1,3 @@
+value 1: colour in hexadecimal (FFFFFF or 000000 for example), or leave blank if you're turning it off
+
+value 2: if off, put 0 in, else leave blank
