@@ -105,6 +105,8 @@ class PlayState extends MusicBeatState
 	public var hscriptArray:Array<HScript> = [];
 	#end
 
+	public var timeBarGlow:FlxSprite;
+
 	public var BF_X:Float = 770;
 	public var BF_Y:Float = 100;
 	public var DAD_X:Float = 100;
@@ -513,6 +515,15 @@ class PlayState extends MusicBeatState
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
+
+		timeBarGlow = new FlxSprite(0, timeTxt.y + (timeTxt.height / 4)).loadGraphic(Paths.image("timeBar (glow)"));
+		timeBarGlow.y -= (timeBarGlow.frameHeight / 2) + (timeBar.frameHeight / 2);
+		timeBarGlow.scrollFactor.set();
+		timeBarGlow.screenCenter(X);
+		timeBarGlow.alpha = 0;
+		timeBarGlow.visible = showTime;
+
+		//uiGroup.add(timeBarGlow);
 		uiGroup.add(timeBar);
 		uiGroup.add(timeTxt);
 
@@ -585,7 +596,8 @@ class PlayState extends MusicBeatState
 
 		trace(songName);
 
-		Application.current.window.title = "Friday Night Funkin': " + modName + " - " + SONG.song;
+		// V srry i know its long but i had to V
+		Application.current.window.title = "Friday Night Funkin': " + modName + " - " + SONG.song.replace(" " + storyDifficultyText, "").replace("-" + storyDifficultyText, "").replace(" " + storyDifficultyText.toUpperCase(), "").replace("-" + storyDifficultyText.toUpperCase(), "") + " (" + storyDifficultyText.toUpperCase() + ")";
 
 		songNameTxt = new FlxText(25, healthBar.y + (ClientPrefs.data.downScroll ? -25 : 25), FlxG.width - 800, SONG.song.toUpperCase().replace("-", " "));
 		songNameTxt.setFormat(Paths.font(mainFont), 32, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1294,6 +1306,7 @@ class PlayState extends MusicBeatState
 		// Song duration in a float, useful for the time left feature
 		songLength = FlxG.sound.music.length;
 		FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+		FlxTween.tween(timeBarGlow, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 		FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 
 		#if DISCORD_ALLOWED
