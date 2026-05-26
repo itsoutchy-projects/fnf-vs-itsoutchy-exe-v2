@@ -1,16 +1,10 @@
 {
 	"storyName": "Loneliness",
-	"difficulties": "Hard",
+	"difficulties": "Hard, Erect",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
 	"weekBefore": "tutorial",
 	"startUnlocked": true,
-	"weekCharacters": [
-		"dad",
-		"bf",
-		"gf"
-	],
-	"hideStoryMode": false,
 	"songs": [
 		[
 			"isolation",
@@ -40,6 +34,12 @@
 			]
 		]
 	],
-	"weekName": "Real Suffering",
-	"hiddenUntilUnlocked": false
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"hideStoryMode": false,
+	"hiddenUntilUnlocked": false,
+	"weekName": "Real Suffering"
 }
