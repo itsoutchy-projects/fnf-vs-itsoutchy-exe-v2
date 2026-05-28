@@ -1,5 +1,7 @@
 local middlescrollchanged = false; -- bc no one else will play this (at least in my case) <-- i was saying? XD
 local middlescrollTweenDuration = 0.3;
+local durationTween = middlescrollTweenDuration;
+local tweenEase = "sineInOut";
 
 local defaultOppArrPos = {
     defaultOpponentStrumX0,
@@ -50,24 +52,30 @@ end
 
 function onEvent(event, value1, value2, strumTime)
     if event == "Middlescroll" then
+        if value2 == "" then
+            durationTween = middlescrollTweenDuration;
+        else
+            durationTween = value2;
+        end
+        debugPrint(value2 == "");
         if value1 == "0" then
             -- off
             middlescrollchanged = false;
             -- Credit to Draconic-Hybrid on Github
             -- (oml wth was wrong with my code)
             -- V
-            noteTweenX("om1",0,92,middlescrollTweenDuration,"smoothStepInOut")
-			noteTweenX("om2",1,204,middlescrollTweenDuration,"smoothStepInOut")
-			noteTweenX("om3",2,316,middlescrollTweenDuration,"smoothStepInOut")
-			noteTweenX("om4",3,428,middlescrollTweenDuration,"smoothStepInOut")
-            noteTweenX("p1",4,732,middlescrollTweenDuration,"smoothStepInOut")
-            noteTweenX("p2",5,844,middlescrollTweenDuration,"smoothStepInOut")
-            noteTweenX("p3",6,956,middlescrollTweenDuration,"smoothStepInOut")
-            noteTweenX("p4",7,1068,middlescrollTweenDuration,"smoothStepInOut")
+            noteTweenX("om1",0,92,durationTween,tweenEase)
+			noteTweenX("om2",1,204,durationTween,tweenEase)
+			noteTweenX("om3",2,316,durationTween,tweenEase)
+			noteTweenX("om4",3,428,durationTween,tweenEase)
+            noteTweenX("p1",4,732,durationTween,tweenEase)
+            noteTweenX("p2",5,844,durationTween,tweenEase)
+            noteTweenX("p3",6,956,durationTween,tweenEase)
+            noteTweenX("p4",7,1068,durationTween,tweenEase)
             -- ^
 
             for i = 0, getProperty('opponentStrums.length') do
-                noteTweenAlpha("opponentStrumsFadeIn"..i, i, 1, middlescrollTweenDuration)
+                noteTweenAlpha("opponentStrumsFadeIn"..i, i, 1, durationTween)
             end
         end
         if value1 == "1" then
@@ -78,10 +86,10 @@ function onEvent(event, value1, value2, strumTime)
             if not middlescroll then
                 for i = 0, getProperty('opponentStrums.length') do
                     --setPropertyFromGroup('opponentStrums', i, 'x', getStrumDefaultX(getProperty('opponentStrums.length') + i) - 320);
-                    noteTweenX("opponentStrumsMiddleScrollOn"..i, i, getStrumDefaultX(getProperty('opponentStrums.length') + i) - 320, middlescrollTweenDuration);
-                    noteTweenX("playerStrumsMiddleScrollOn"..i, getProperty('opponentStrums.length') + i, getStrumDefaultX(getProperty('playerStrums.length') + i) - 320, middlescrollTweenDuration);
+                    noteTweenX("opponentStrumsMiddleScrollOn"..i, i, getStrumDefaultX(getProperty('opponentStrums.length') + i) - 320, durationTween);
+                    noteTweenX("playerStrumsMiddleScrollOn"..i, getProperty('opponentStrums.length') + i, getStrumDefaultX(getProperty('playerStrums.length') + i) - 320, durationTween);
                     --setPropertyFromGroup('playerStrums', i, 'x', getStrumDefaultX(getProperty('playerStrums.length') + i) - 320);
-                    noteTweenAlpha("opponentStrumsFadeOut"..i, i, 0.3, middlescrollTweenDuration)
+                    noteTweenAlpha("opponentStrumsFadeOut"..i, i, 0.1, durationTween)
                     --doTweenAlpha("opponentStrumsFadeOut"..i, "opponentStrums", 0.3, middlescrollTweenDuration);
                     --setPropertyFromGroup('opponentStrums', i, 'alpha', 0.3);
                 end
